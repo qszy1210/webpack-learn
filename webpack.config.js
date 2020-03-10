@@ -69,7 +69,15 @@ module.exports = {
 				loader: 'babel-loader',
 
 				options: {
-					plugins: ['syntax-dynamic-import'],
+					plugins: [
+						[
+							"@babel/plugin-transform-runtime",
+							{
+								"corejs": 3
+							}
+						],
+						'syntax-dynamic-import'
+					],
 
 					presets: [
 						[
