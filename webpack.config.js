@@ -33,11 +33,15 @@ if(module && module.hot) {
 }
 module.exports = {
 	mode: 'development',
-	entry: './src/index.js',
+	entry: {
+		index: './src/index.js',
+		login: './src/login.js'
+	},
 
 	output: {
 		filename: '[name].[hash].js',
 		path: path.resolve(__dirname, 'dist'),
+		// publicPath: '/'
 	},
 
 	 devServer: {
@@ -47,7 +51,14 @@ module.exports = {
 	plugins: [
 		new webpack.ProgressPlugin(),
 		new HtmlWebpackPlugin({
-			template: './src/index.html'
+			template: './src/index.html',
+			filename: 'index.html',
+			chunks: ['index']
+		}),
+		new HtmlWebpackPlugin({
+			template: './src/login.html',
+			filename: 'login.html',
+			chunks: ['login']
 		}),
 		new CleanWebpackPlugin(),
 		new CopyWebpackPlugin([{
@@ -59,7 +70,7 @@ module.exports = {
 		}),
 		new webpack.ProvidePlugin({
 			React: 'react',
-			ReactDom: 'react-dom',
+			ReactDOM: 'react-dom',
 			Component: ['react', 'Component']
 		}),
 		new MiniCssExtractPlugin({
@@ -77,12 +88,12 @@ module.exports = {
 
 				options: {
 					plugins: [
-						[
-							"@babel/plugin-transform-runtime",
-							{
-								"corejs": 3
-							}
-						],
+						// [
+						// 	"@babel/plugin-transform-runtime",
+						// 	{
+						// 		"corejs": 3
+						// 	}
+						// ],
 						'syntax-dynamic-import'
 					],
 
