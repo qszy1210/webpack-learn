@@ -44,10 +44,6 @@ module.exports = {
 		// publicPath: '/'
 	},
 
-	 devServer: {
-        hot: true
-	},
-
 	//一级属性
 	resolve: {
 		// modules: ['node_modules'],
@@ -146,6 +142,25 @@ module.exports = {
 	},
 
 	devServer: {
-		open: true
-	}
+		open: true,
+		port: 7777,
+	   // hot: true,
+	   proxy: {
+		   // "*/*": "http://localhost:8888/user"
+		   // "*": {
+		   // 	target: "http://[::1]:8888/user",
+		   // 	// pathRewrite: {
+		   // 	// 	'/api': '/user'
+		   // 	// }
+		   // 	// secure: false,
+		   // },
+
+		   '**': {
+			   target: 'http://localhost:8888/',
+			   pathRewrite: { '^/api': '' },
+			   // secure: false,
+				//changeOrigin: true,
+			}
+	   }
+   },
 };
