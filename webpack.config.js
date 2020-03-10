@@ -46,7 +46,16 @@ module.exports = {
 
 	 devServer: {
         hot: true
-    },
+	},
+
+	//一级属性
+	resolve: {
+		// modules: ['node_modules'],
+		// alias: {
+
+		// },
+		// extensions: ['js,jsx']
+	},
 
 	plugins: [
 		new webpack.ProgressPlugin(),
