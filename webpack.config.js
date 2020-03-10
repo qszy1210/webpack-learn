@@ -28,15 +28,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  * https://github.com/jantimon/html-webpack-plugin
  *
  */
-
+if(module && module.hot) {
+    module.hot.accept()
+}
 module.exports = {
 	mode: 'development',
 	entry: './src/index.js',
 
 	output: {
-		filename: '[name].[chunkhash].js',
+		filename: '[name].[hash].js',
 		path: path.resolve(__dirname, 'dist'),
 	},
+
+	 devServer: {
+        hot: true
+    },
 
 	plugins: [
 		new webpack.ProgressPlugin(),
@@ -58,7 +64,8 @@ module.exports = {
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'distcss/[name].css'
-		})
+		}),
+		new webpack.HotModuleReplacementPlugin()
 	],
 
 	module: {

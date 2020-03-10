@@ -2,3 +2,8 @@
     border: 1px solid #000;
     background: #f00;
 }
+.button{
+    color: red;
+    font-size: 20px;
+    background: red;
+}

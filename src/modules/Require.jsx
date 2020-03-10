@@ -4,7 +4,7 @@ import * as React from 'react';
 export default class Require extends React.Component {
   render() {
     return (
-      <div>
+      <div className="button">
         <button onClick={this.load}>button</button>
       </div>
     );
